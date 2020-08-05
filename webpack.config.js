@@ -4,13 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-class NothingPlugin {
-  constructor() {
-    this.apply = function() {};
-  }
-}
 module.exports = (env = {}) => {
-  console.log('exports', env);
   const { mode = 'development' } = env;
 
   const isProd = mode === 'production';
