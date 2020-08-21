@@ -10,16 +10,16 @@
     "clean": "rm -f -r dist",
     "dev": "webpack -d --env.mode=development",
     "prod": "webpack -p --env.mode=production",
-    "lint": "eslint src/**/*.*",
-    "fix": "eslint src/**/*.* --fix",
-    "prettier": "prettier --config .prettierrc --write src/**/*.*",
+    "lint": "eslint src/**/*.js",
+    "fix": "eslint src/**/*.js --fix",
+    "prettier": "prettier --config .prettierrc --write src/**/*.js",
     "start": "webpack-dev-server --open --hot -d",
     "analyze": "webpack -p --env.analyze"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run prettier && git add .",
-      "pre-push": "eslint --ext .js src/"
+      "pre-push": "eslint src/**/*.*"
     }
   },
   "dependencies": {

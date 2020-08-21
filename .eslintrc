@@ -8,6 +8,9 @@
   "extends": ["airbnb", "prettier", "prettier/react"],
   "plugins": ["import", "jsx-a11y", "react", "react-hooks"],
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": [0, { "ignore": "ignore", "customValidators": "customValidator" }]
   }
 }

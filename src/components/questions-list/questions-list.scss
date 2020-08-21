@@ -1,0 +1,14 @@
+.questions-list {
+  display: flex;
+  justify-content: space-evenly;
+
+  list-style: none;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+  }
+}

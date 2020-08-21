@@ -1,0 +1,11 @@
+.questions-list {
+  &__text {
+    padding: 0 10px;
+
+    text-align: center;
+
+    &_active {
+      color: red;
+    }
+  }
+}

@@ -40,7 +40,7 @@ module.exports = (env = {}) => {
 
   return {
     mode: isProd ? 'production' : isDev && 'development',
-    entry: './src/index.jsx',
+    entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'js/[name]-[hash:8].js',
@@ -109,8 +109,7 @@ module.exports = (env = {}) => {
     plugins: getPlugins(),
 
     devServer: {
-      inline: false,
-      contentBase: './dist',
+      open: true,
     },
   };
 };
