@@ -2,10 +2,10 @@ import React from 'react';
 import './list-item.scss';
 
 const ListItem = ({ text, active }) => {
-  return (
-    <span className={`questions-list__text${active ? ' questions-list__text_active' : ''}`}>
-      {text}
-    </span>
-  );
+  let classNames = 'questions-list__text';
+  if (active) {
+    classNames = `${classNames} questions-list__text_active`;
+  }
+  return <span className={classNames}>{text}</span>;
 };
 export default ListItem;

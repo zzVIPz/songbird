@@ -11,6 +11,8 @@
     "strict": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": "off",
-    "react/prop-types": [0, { "ignore": "ignore", "customValidators": "customValidator" }]
+    "react/prop-types": [0, { "ignore": "ignore", "customValidators": "customValidator" }],
+    "react/state-in-constructor": "off",
+    "react/destructuring-assignment": [1, "always", { "ignoreClassFields": true }]
   }
 }

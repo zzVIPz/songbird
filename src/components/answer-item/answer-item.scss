@@ -1,0 +1,10 @@
+.answer-section {
+  &__text {
+    &_correct {
+      color: green;
+    }
+    &_incorrect {
+      color: red;
+    }
+  }
+}

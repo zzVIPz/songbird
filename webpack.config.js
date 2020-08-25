@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -16,11 +17,11 @@ module.exports = (env = {}) => {
 
   const getPlugins = () => {
     const plugins = [
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         title: 'SONGBIRD',
         template: 'public/index.html',
       }),
-      new CleanWebpackPlugin(),
     ];
 
     if (isProd) {
@@ -40,6 +41,7 @@ module.exports = (env = {}) => {
 
   return {
     mode: isProd ? 'production' : isDev && 'development',
+    devtool: isProd ? 'none' : 'source-map',
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -109,7 +111,7 @@ module.exports = (env = {}) => {
     plugins: getPlugins(),
 
     devServer: {
-      open: true,
+      contentBase: './dist',
     },
   };
 };

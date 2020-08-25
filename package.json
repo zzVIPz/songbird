@@ -13,7 +13,7 @@
     "lint": "eslint src/**/*.js",
     "fix": "eslint src/**/*.js --fix",
     "prettier": "prettier --config .prettierrc --write src/**/*.js",
-    "start": "webpack-dev-server --open --hot -d",
+    "start": "webpack-dev-server -d --open --hot",
     "analyze": "webpack -p --env.analyze"
   },
   "husky": {
@@ -28,8 +28,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-h5-audio-player": "^3.3.2",
     "react-hot-loader": "^4.12.19",
-    "regenerator-runtime": "^0.13.7"
+    "regenerator-runtime": "^0.13.7",
+    "source-map": "^0.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

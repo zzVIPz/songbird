@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Score = ({ score }) => {
-  return <div>{score}</div>;
+const Score = ({ scoreText, currentScore }) => {
+  return (
+    <div>
+      {scoreText}
+      <span>{currentScore}</span>
+    </div>
+  );
 };
 
 export default Score;

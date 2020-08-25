@@ -1,0 +1,8 @@
+.answer-section {
+  &__item {
+    cursor: pointer;
+  }
+  &__item:hover {
+    color: green;
+  }
+}
