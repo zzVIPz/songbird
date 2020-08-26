@@ -13,6 +13,7 @@ export default class App extends PureComponent {
   state = {
     currentScore: INITIAL_STATE.initialScore,
     currentRound: 0,
+    currentItem: null,
     addPoints: INITIAL_STATE.pointsForAnswer,
     selectedBirdIndex: getRandomInteger(),
     roundsList: INITIAL_STATE.roundsList,
@@ -29,10 +30,12 @@ export default class App extends PureComponent {
         currentScore: currentScore + addPoints,
         isBtnNextLevelDisabled: false,
         isCorrectAnswerGet: true,
+        currentItem: id,
       }));
     } else if (addPoints) {
       this.setState(() => ({
         addPoints: addPoints - 1,
+        currentItem: id,
       }));
     }
   };
@@ -70,6 +73,7 @@ export default class App extends PureComponent {
         currentRoundData: BIRDS_DATA[roundsList[currentRound + 1].id],
         selectedBirdIndex: getRandomInteger(),
         isCorrectAnswerGet: false,
+        currentItem: null,
       };
     });
   };
@@ -83,8 +87,15 @@ export default class App extends PureComponent {
       currentRoundData,
       isBtnNextLevelDisabled,
       isCorrectAnswerGet,
+      currentItem,
     } = this.state;
-    const { titleText, scoreText, btnNextLevelText, describeSectionText } = INITIAL_STATE;
+    const {
+      titleText,
+      scoreText,
+      btnNextLevelText,
+      describeSectionText,
+      heroTitleText,
+    } = INITIAL_STATE;
     const currentRoundId = roundsList[currentRound].id;
     const SelectedRound = BIRDS_DATA[currentRoundId];
     const SelectedBirdInfo = SelectedRound[selectedBirdIndex];
@@ -92,16 +103,13 @@ export default class App extends PureComponent {
       <div className="app__container">
         <Header {...{ titleText, scoreText, roundsList, currentScore }} />
         <main>
-          <CurrentQuestionSection {...{ ...SelectedBirdInfo, isCorrectAnswerGet }} />
+          <CurrentQuestionSection {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }} />
           <div className="wrapper">
             <AnswerSection
               {...{ currentRoundData, selectedBirdIndex }}
               handleClick={this.onAnswerClick}
             />
-            <DescribeSection
-              SelectedRound={SelectedRound}
-              describeSectionText={describeSectionText}
-            />
+            <DescribeSection {...{ currentRoundData, describeSectionText, currentItem }} />
           </div>
         </main>
         <footer>

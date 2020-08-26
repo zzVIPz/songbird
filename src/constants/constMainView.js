@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   describeSectionText: 'Послушайте плеер и выберите птицу из списка',
   btnNextLevelText: 'Next Level',
   modalTitle: 'Поздравляем!',
-
+  heroTitleText: '*******',
   roundsList: [
     { id: 'warmUp', text: 'РАЗМИНКА', active: true },
     { id: 'sparrow', text: 'ВОРОБЬИНЫЕ', active: false },
