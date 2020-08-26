@@ -78,6 +78,15 @@ module.exports = (env = {}) => {
             },
           ],
         },
+        // Loading audio
+        {
+          test: /\.(ogg|mp3|wav|mpe?g)$/i,
+          loader: 'file-loader',
+          options: {
+            outputPath: 'audio',
+            name: '[name]-[sha1:hash:7].[ext]',
+          },
+        },
 
         // Loading fonts
         {

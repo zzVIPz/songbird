@@ -9,14 +9,21 @@ import CurrentQuestionSection from '../current-question-section/current-question
 import AnswerSection from '../answer-section/answer-section';
 import DescribeSection from '../describe-section/describe-section';
 import Modal from '../modal/modal';
+import correctAudioSound from '../../assets/audio/correct.mp3';
+import incorrectAudioSound from '../../assets/audio/error.mp3';
 
 export default class App extends PureComponent {
   state = INITIAL_STATE;
+
+  correctAnswerAudio = new Audio(correctAudioSound);
+
+  incorrectAnswerAudio = new Audio(incorrectAudioSound);
 
   onAnswerClick = (id) => {
     const { selectedBirdIndex, addPoints } = this.state;
     this.changeAnswerItemClass(id);
     if (selectedBirdIndex === id - 1) {
+      this.correctAnswerAudio.play();
       this.setState(({ currentScore }) => ({
         currentScore: currentScore + addPoints,
         isBtnNextLevelDisabled: false,
@@ -24,6 +31,7 @@ export default class App extends PureComponent {
         currentItem: id,
       }));
     } else if (addPoints) {
+      this.incorrectAnswerAudio.play();
       this.setState(() => ({
         addPoints: addPoints - 1,
         currentItem: id,
