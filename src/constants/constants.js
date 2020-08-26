@@ -8,6 +8,7 @@ const INITIAL_VALUE = {
   btnNextLevelText: 'Next Level',
   modalTitle: 'Поздравляем!',
   heroTitleText: '*******',
+  btnRepeat: 'Попробовать снова',
   roundsList: [
     { id: 'warmUp', text: 'РАЗМИНКА', active: true },
     { id: 'sparrow', text: 'ВОРОБЬИНЫЕ', active: false },

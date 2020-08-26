@@ -31,6 +31,10 @@ export default class App extends PureComponent {
     }
   };
 
+  onGameRestart = () => {
+    this.setState(() => INITIAL_STATE);
+  };
+
   changeAnswerItemClass = (id) => {
     this.setState(({ currentRoundData }) => {
       const idx = currentRoundData.findIndex((el) => el.id === id);
@@ -121,6 +125,6 @@ export default class App extends PureComponent {
       );
     }
 
-    return <Modal {...{ currentScore }} />;
+    return <Modal {...{ currentScore }} handleClick={this.onGameRestart} />;
   }
 }
