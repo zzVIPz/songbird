@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import INITIAL_STATE from '../../constants/constMainView';
+import { INITIAL_VALUE, INITIAL_STATE } from '../../constants/constants';
 import getRandomInteger from '../../utils/getRandomInteger';
 import BIRDS_DATA from '../../data/birds-data';
 
@@ -8,19 +8,10 @@ import ButtonNextLevel from '../btn-next-level/btn-next-level';
 import CurrentQuestionSection from '../current-question-section/current-question-section';
 import AnswerSection from '../answer-section/answer-section';
 import DescribeSection from '../describe-section/describe-section';
+import Modal from '../modal/modal';
 
 export default class App extends PureComponent {
-  state = {
-    currentScore: INITIAL_STATE.initialScore,
-    currentRound: 0,
-    currentItem: null,
-    addPoints: INITIAL_STATE.pointsForAnswer,
-    selectedBirdIndex: getRandomInteger(),
-    roundsList: INITIAL_STATE.roundsList,
-    currentRoundData: BIRDS_DATA.warmUp,
-    isBtnNextLevelDisabled: true,
-    isCorrectAnswerGet: false,
-  };
+  state = INITIAL_STATE;
 
   onAnswerClick = (id) => {
     const { selectedBirdIndex, addPoints } = this.state;
@@ -58,23 +49,26 @@ export default class App extends PureComponent {
 
   onButtonNextLevelClick = () => {
     this.setState(({ roundsList, currentRound }) => {
-      const currentRoundsList = roundsList.map((item, idx) => {
-        const el = { ...item, active: false };
-        if (idx === currentRound + 1) {
-          el.active = true;
-        }
-        return el;
-      });
-      return {
-        roundsList: currentRoundsList,
-        addPoints: INITIAL_STATE.pointsForAnswer,
-        currentRound: currentRound + 1,
-        isBtnNextLevelDisabled: true,
-        currentRoundData: BIRDS_DATA[roundsList[currentRound + 1].id],
-        selectedBirdIndex: getRandomInteger(),
-        isCorrectAnswerGet: false,
-        currentItem: null,
-      };
+      if (currentRound < roundsList.length - 1) {
+        const currentRoundsList = roundsList.map((item, idx) => {
+          const el = { ...item, active: false };
+          if (idx === currentRound + 1) {
+            el.active = true;
+          }
+          return el;
+        });
+        return {
+          roundsList: currentRoundsList,
+          addPoints: INITIAL_VALUE.pointsForAnswer,
+          currentRound: currentRound + 1,
+          isBtnNextLevelDisabled: true,
+          currentRoundData: BIRDS_DATA[roundsList[currentRound + 1].id],
+          selectedBirdIndex: getRandomInteger(),
+          isCorrectAnswerGet: false,
+          currentItem: null,
+        };
+      }
+      return { showModal: true };
     });
   };
 
@@ -88,6 +82,7 @@ export default class App extends PureComponent {
       isBtnNextLevelDisabled,
       isCorrectAnswerGet,
       currentItem,
+      showModal,
     } = this.state;
     const {
       titleText,
@@ -95,30 +90,37 @@ export default class App extends PureComponent {
       btnNextLevelText,
       describeSectionText,
       heroTitleText,
-    } = INITIAL_STATE;
+    } = INITIAL_VALUE;
     const currentRoundId = roundsList[currentRound].id;
     const SelectedRound = BIRDS_DATA[currentRoundId];
     const SelectedBirdInfo = SelectedRound[selectedBirdIndex];
-    return (
-      <div className="app__container">
-        <Header {...{ titleText, scoreText, roundsList, currentScore }} />
-        <main>
-          <CurrentQuestionSection {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }} />
-          <div className="wrapper">
-            <AnswerSection
-              {...{ currentRoundData, selectedBirdIndex }}
-              handleClick={this.onAnswerClick}
+
+    if (!showModal) {
+      return (
+        <>
+          <Header {...{ titleText, scoreText, roundsList, currentScore }} />
+          <main>
+            <CurrentQuestionSection
+              {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }}
             />
-            <DescribeSection {...{ currentRoundData, describeSectionText, currentItem }} />
-          </div>
-        </main>
-        <footer>
-          <ButtonNextLevel
-            {...{ btnNextLevelText, isBtnNextLevelDisabled }}
-            handleClick={this.onButtonNextLevelClick}
-          />
-        </footer>
-      </div>
-    );
+            <div className="wrapper">
+              <AnswerSection
+                {...{ currentRoundData, selectedBirdIndex }}
+                handleClick={this.onAnswerClick}
+              />
+              <DescribeSection {...{ currentRoundData, describeSectionText, currentItem }} />
+            </div>
+          </main>
+          <footer>
+            <ButtonNextLevel
+              {...{ btnNextLevelText, isBtnNextLevelDisabled }}
+              handleClick={this.onButtonNextLevelClick}
+            />
+          </footer>
+        </>
+      );
+    }
+
+    return <Modal {...{ currentScore }} />;
   }
 }

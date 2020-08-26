@@ -1,4 +1,7 @@
-const INITIAL_STATE = {
+import BIRDS_DATA from '../data/birds-data';
+import getRandomInteger from '../utils/getRandomInteger';
+
+const INITIAL_VALUE = {
   titleText: 'SONGBIRD',
   scoreText: 'SCORE : ',
   describeSectionText: 'Послушайте плеер и выберите птицу из списка',
@@ -15,6 +18,23 @@ const INITIAL_STATE = {
   ],
   pointsForAnswer: 5,
   initialScore: 0,
+  maxGamePoints: 30,
 };
 
-export default INITIAL_STATE;
+const INITIAL_STATE = {
+  currentScore: INITIAL_VALUE.initialScore,
+  currentRound: 0,
+  currentItem: null,
+  addPoints: INITIAL_VALUE.pointsForAnswer,
+  selectedBirdIndex: getRandomInteger(),
+  roundsList: INITIAL_VALUE.roundsList,
+  currentRoundData: BIRDS_DATA.warmUp,
+  isBtnNextLevelDisabled: true,
+  isCorrectAnswerGet: false,
+  showModal: false,
+};
+
+const MODAL_CONGRATULATION = (point) =>
+  `Вы набрали ${point} из ${INITIAL_VALUE.maxGamePoints} возможных баллов`;
+
+export { INITIAL_VALUE, MODAL_CONGRATULATION, INITIAL_STATE };
