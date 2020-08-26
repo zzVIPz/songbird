@@ -1,14 +1,34 @@
+@import "../../sass/abstract/constants";
+
 .questions-list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 5px;
 
   list-style: none;
+
+  background-image: $color-sub-header;
 
   &__item {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 170px;
+    margin-top: 10px;
 
     cursor: pointer;
+  }
+}
+
+@media (max-width: 380px) {
+  .questions-list {
+    &__item {
+      min-width: 130px;
+
+      font-size: 1.5rem;
+    }
   }
 }

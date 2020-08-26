@@ -1,11 +1,14 @@
+@import "../../sass/abstract/constants";
+
 .questions-list {
   &__text {
     padding: 0 10px;
 
+    font-size: 1.5rem;
     text-align: center;
 
     &_active {
-      color: red;
+      color: $color-header-active-text;
     }
   }
 }

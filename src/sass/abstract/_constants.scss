@@ -1,0 +1,33 @@
+$color-header: linear-gradient(to bottom, #250902, #290904, #2e0806, #33060a, #6b0d1f);
+$color-sub-header: linear-gradient(to top, #250902, #290904, #2e0806, #33060a, #6b0d1f);
+$color-header-text: wheat;
+$color-header-active-text: #ffa600;
+$color-body: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+$color-menu-elements: #ffffffc7;
+$color-menu-elements-hover: #ffffff;
+$color-navigation-background: #65c3ba;
+$color-navigation-link-active: #63410f;
+$color-modal-settings: linear-gradient(-225deg, #fffeff 0%, #fdfffc 100%);
+$color-incorrect-low: orange;
+$color-incorrect-heavy: red;
+$color-letter: green;
+$color-username: red;
+
+//modal-window
+$modal-background: #ffffff;
+$modal-button-color: #ffffff;
+$modal-button-background-color: #19396e;
+$modal-button-hover-background-color: #ffffff;
+
+//modal-settings
+$modal-button-background-color: #011627;
+$modal-button-accept-background: #2ec4b6;
+
+//short-stat
+$short-stat-border-color: #80808080;
+$short-stat-error-text: #ff5722;
+
+//user-info
+$user-info-title: #9a0000;
+$user-info-subtitle: #de0000;
+$user-info-value: #519e61;

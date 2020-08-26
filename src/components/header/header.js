@@ -6,16 +6,16 @@ import QuestionList from '../questions-list/questions-list';
 
 import './header.scss';
 
-const Header = ({ titleText, scoreText, roundsList, currentScore }) => {
+const HeaderContainer = ({ titleText, scoreText, roundsList, currentScore }) => {
   return (
-    <header className="header">
-      <div className="header__wrapper">
+    <>
+      <div className="header__title">
         <HeaderTitle {...{ titleText }} />
         <HeaderScore {...{ scoreText, currentScore }} />
       </div>
       <QuestionList listItems={roundsList} />
-    </header>
+    </>
   );
 };
 
-export default Header;
+export default HeaderContainer;

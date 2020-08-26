@@ -41,7 +41,9 @@ module.exports = (env = {}) => {
   return {
     mode: isProd ? 'production' : isDev && 'development',
     devtool: isProd ? 'none' : 'source-map',
-    entry: './src/index.js',
+    entry: {
+      index: ['./src/index.js', './src/sass/index.scss'],
+    },
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'js/[name]-[hash:8].js',
@@ -78,6 +80,7 @@ module.exports = (env = {}) => {
             },
           ],
         },
+
         // Loading audio
         {
           test: /\.(ogg|mp3|wav|mpe?g)$/i,

@@ -3,7 +3,7 @@ import { INITIAL_VALUE, INITIAL_STATE } from '../../constants/constants';
 import getRandomInteger from '../../utils/getRandomInteger';
 import BIRDS_DATA from '../../data/birds-data';
 
-import Header from '../header/header';
+import HeaderContainer from '../header/header';
 import ButtonNextLevel from '../btn-next-level/btn-next-level';
 import CurrentQuestionSection from '../current-question-section/current-question-section';
 import AnswerSection from '../answer-section/answer-section';
@@ -110,8 +110,10 @@ export default class App extends PureComponent {
     if (!showModal) {
       return (
         <>
-          <Header {...{ titleText, scoreText, roundsList, currentScore }} />
-          <main>
+          <header className="header">
+            <HeaderContainer {...{ titleText, scoreText, roundsList, currentScore }} />
+          </header>
+          <main className="main">
             <CurrentQuestionSection
               {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }}
             />
@@ -123,7 +125,7 @@ export default class App extends PureComponent {
               <DescribeSection {...{ currentRoundData, describeSectionText, currentItem }} />
             </div>
           </main>
-          <footer>
+          <footer className="footer">
             <ButtonNextLevel
               {...{ btnNextLevelText, isBtnNextLevelDisabled }}
               handleClick={this.onButtonNextLevelClick}
