@@ -1,7 +1,11 @@
 .btn-next-level {
-  background-color: green;
+  width: 200px;
+  height: 35px;
+
+  opacity: .5;
 
   &_active {
-    background-color: blue;
+    cursor: pointer;
+    opacity: 1;
   }
 }

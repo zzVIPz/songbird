@@ -12,7 +12,11 @@ const QuestionList = ({ listItems }) => {
       </li>
     );
   });
-  return <ul className="questions-list">{questionsList}</ul>;
+  return (
+    <div className="questions-list__container">
+      <ul className="questions-list">{questionsList}</ul>
+    </div>
+  );
 };
 
 export default QuestionList;

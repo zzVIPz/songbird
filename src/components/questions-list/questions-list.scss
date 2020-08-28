@@ -4,13 +4,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 100%;
   margin: 0;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 
   list-style: none;
 
-  background-image: $color-sub-header;
+  &__container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    background-image: $color-sub-header;
+  }
 
   &__item {
     display: flex;
@@ -20,6 +25,12 @@
     margin-top: 10px;
 
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1020px) {
+  .questions-list {
+    max-width: 670px;
   }
 }
 
