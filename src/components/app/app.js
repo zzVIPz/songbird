@@ -117,7 +117,7 @@ export default class App extends PureComponent {
             <CurrentQuestionSection
               {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }}
             />
-            <div className="wrapper">
+            <div className="container">
               <AnswerSection
                 {...{ currentRoundData, selectedBirdIndex }}
                 handleClick={this.onAnswerClick}

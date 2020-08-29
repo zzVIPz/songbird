@@ -12,7 +12,6 @@ export default class AnswerSection extends PureComponent {
           key={id}
           className="answer-section__item"
           onClick={() => {
-            console.log('clicked', clicked);
             if (!clicked) {
               handleClick(id);
             }
@@ -24,7 +23,7 @@ export default class AnswerSection extends PureComponent {
       );
     });
     return (
-      <section>
+      <section className="answer-section">
         <ul className="answer-section__list">{answersList}</ul>
       </section>
     );

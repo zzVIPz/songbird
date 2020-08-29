@@ -6,7 +6,7 @@ export default class ButtonNextLevel extends PureComponent {
     const { btnNextLevelText, isBtnNextLevelDisabled, handleClick } = this.props;
 
     let classNames = 'btn-next-level';
-    if (isBtnNextLevelDisabled) {
+    if (!isBtnNextLevelDisabled) {
       classNames = `${classNames} btn-next-level_active`;
     }
     return (

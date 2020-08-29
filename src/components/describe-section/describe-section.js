@@ -10,16 +10,20 @@ const DescribeSection = ({ describeSectionText, currentItem, currentRoundData })
   if (currentItem) {
     const { image, name, species, description, audio } = currentRoundData[currentItem - 1];
     return (
-      <section>
-        <QuestionImage {...{ image }} />
-        <h3> {name} </h3>
-        <h5> {species} </h5>
-        <AudioPlayer src={audio} autoPlay={false} autoPlayAfterSrcChange={false} />
-        <p>{description}</p>
+      <section className="describe-section">
+        <div className="wrapper">
+          <div className="describe-section__description">
+            <h3> {name} </h3>
+            <h5> {species} </h5>
+            <AudioPlayer src={audio} autoPlay={false} autoPlayAfterSrcChange={false} />
+          </div>
+          <QuestionImage {...{ image }} />
+        </div>
+        <p className="describe-section__text">{description}</p>
       </section>
     );
   }
-  return <p className="describe-section__text">{describeSectionText}</p>;
+  return <p className="describe-text">{describeSectionText}</p>;
 };
 
 export default DescribeSection;
