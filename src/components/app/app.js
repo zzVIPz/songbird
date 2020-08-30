@@ -3,11 +3,11 @@ import { INITIAL_VALUE, INITIAL_STATE } from '../../constants/constants';
 import getRandomInteger from '../../utils/getRandomInteger';
 import BIRDS_DATA from '../../data/birds-data';
 
-import HeaderContainer from '../header/header';
-import Footer from '../footer/footer';
+import Header from '../header/header';
 import Main from '../main/main';
-
+import Footer from '../footer/footer';
 import Modal from '../modal/modal';
+
 import correctAudioSound from '../../assets/audio/correct.mp3';
 import incorrectAudioSound from '../../assets/audio/error.mp3';
 
@@ -95,13 +95,7 @@ export default class App extends PureComponent {
       currentItem,
       showModal,
     } = this.state;
-    const {
-      titleText,
-      scoreText,
-      btnNextLevelText,
-      describeSectionText,
-      heroTitleText,
-    } = INITIAL_VALUE;
+
     const currentRoundId = roundsList[currentRound].id;
     const SelectedRound = BIRDS_DATA[currentRoundId];
     const SelectedBirdInfo = SelectedRound[selectedBirdIndex];
@@ -109,28 +103,28 @@ export default class App extends PureComponent {
     if (!showModal) {
       return (
         <>
-          <HeaderContainer {...{ titleText, scoreText, roundsList, currentScore }} />
+          <Header {...{ roundsList, currentScore }} />
           <Main
             {...{
               SelectedBirdInfo,
               isCorrectAnswerGet,
-              heroTitleText,
+              isBtnNextLevelDisabled,
               currentRoundData,
               selectedBirdIndex,
               onAnswerClick: this.onAnswerClick,
-              describeSectionText,
               currentItem,
             }}
           />
-
           <Footer
-            {...{ btnNextLevelText, isBtnNextLevelDisabled }}
-            handleClick={this.onButtonNextLevelClick}
+            {...{
+              isBtnNextLevelDisabled,
+              handleClick: this.onButtonNextLevelClick,
+            }}
           />
         </>
       );
     }
 
-    return <Modal {...{ currentScore }} handleClick={this.onGameRestart} />;
+    return <Modal {...{ currentScore, handleClick: this.onGameRestart }} />;
   }
 }

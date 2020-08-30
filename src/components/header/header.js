@@ -1,16 +1,18 @@
 import React from 'react';
 
-import HeaderTitle from '../header-title/header-title';
+import { INITIAL_VALUE } from '../../constants/constants';
+
 import HeaderScore from '../header-score/header-score';
 import QuestionList from '../questions-list/questions-list';
 
 import './header.scss';
 
-const HeaderContainer = ({ titleText, scoreText, roundsList, currentScore }) => {
+const Header = ({ roundsList, currentScore }) => {
+  const { titleText, scoreText } = INITIAL_VALUE;
   return (
     <header className="header">
       <div className="header__title">
-        <HeaderTitle {...{ titleText }} />
+        <h1>{titleText}</h1>
         <HeaderScore {...{ scoreText, currentScore }} />
       </div>
       <QuestionList listItems={roundsList} />
@@ -18,4 +20,4 @@ const HeaderContainer = ({ titleText, scoreText, roundsList, currentScore }) => 
   );
 };
 
-export default HeaderContainer;
+export default Header;

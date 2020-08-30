@@ -1,18 +1,23 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { INITIAL_VALUE } from '../../constants/constants';
 import './answer-item.scss';
 
-export default class AnswerItem extends PureComponent {
-  render() {
-    const { name, id, clicked, selectedBirdIndex } = this.props;
-    let classNames = 'answer-section__text';
-    if (clicked) {
-      if (id - 1 === selectedBirdIndex) {
-        classNames = `${classNames} answer-section__text_correct`;
-      } else {
-        classNames = `${classNames} answer-section__text_incorrect`;
-      }
+const AnswerItem = ({ name, id, clicked, selectedBirdIndex, isCorrectAnswerGet }) => {
+  const { symbol } = INITIAL_VALUE;
+  let classNames = 'answer-section__symbol';
+  if (clicked && !isCorrectAnswerGet) {
+    if (id - 1 === selectedBirdIndex) {
+      classNames = `${classNames} answer-section__symbol_correct`;
+    } else {
+      classNames = `${classNames} answer-section__symbol_incorrect`;
     }
-
-    return <span className={classNames}>{name}</span>;
   }
-}
+
+  return (
+    <span className="answer-section__text">
+      <span className={classNames}>{symbol}</span>
+      {name}
+    </span>
+  );
+};
+export default AnswerItem;

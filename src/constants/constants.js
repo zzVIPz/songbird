@@ -20,6 +20,7 @@ const INITIAL_VALUE = {
   pointsForAnswer: 5,
   initialScore: 0,
   maxGamePoints: 30,
+  symbol: '● ',
 };
 
 const INITIAL_STATE = {

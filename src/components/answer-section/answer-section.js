@@ -1,31 +1,35 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import AnswerItem from '../answer-item/answer-item';
 import './answer-section.scss';
 
-export default class AnswerSection extends PureComponent {
-  render() {
-    const { currentRoundData, selectedBirdIndex, handleClick } = this.props;
-    const answersList = currentRoundData.map((item) => {
-      const { id, name, clicked } = item;
-      return (
-        <li
-          key={id}
-          className="answer-section__item"
-          onClick={() => {
-            if (!clicked) {
-              handleClick(id);
-            }
-          }}
-          aria-hidden="true"
-        >
-          <AnswerItem {...{ name, id, clicked, selectedBirdIndex }} />
-        </li>
-      );
-    });
+const AnswerSection = ({
+  currentRoundData,
+  selectedBirdIndex,
+  handleClick,
+  isCorrectAnswerGet,
+}) => {
+  const answersList = currentRoundData.map((item) => {
+    const { id, name, clicked } = item;
     return (
-      <section className="answer-section">
-        <ul className="answer-section__list">{answersList}</ul>
-      </section>
+      <li
+        key={id}
+        className="answer-section__item"
+        onClick={() => {
+          if (!clicked) {
+            handleClick(id);
+          }
+        }}
+        aria-hidden="true"
+      >
+        <AnswerItem {...{ name, id, clicked, selectedBirdIndex, isCorrectAnswerGet }} />
+      </li>
     );
-  }
-}
+  });
+  return (
+    <section className="answer-section">
+      <ul className="answer-section__list">{answersList}</ul>
+    </section>
+  );
+};
+
+export default AnswerSection;
