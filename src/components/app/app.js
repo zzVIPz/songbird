@@ -6,7 +6,6 @@ import BIRDS_DATA from '../../data/birds-data';
 import Header from '../header/header';
 import Main from '../main/main';
 import Footer from '../footer/footer';
-import Modal from '../modal/modal';
 
 import correctAudioSound from '../../assets/audio/correct.mp3';
 import incorrectAudioSound from '../../assets/audio/error.mp3';
@@ -24,6 +23,7 @@ export default class App extends PureComponent {
 
     if (selectedBirdIndex === id - 1) {
       this.onClickAudioPlay(true);
+      this.stopAllAudio();
       this.setState(({ currentScore }) => ({
         currentScore: currentScore + addPoints,
         isBtnNextLevelDisabled: false,
@@ -36,6 +36,11 @@ export default class App extends PureComponent {
         }));
       }
     }
+  };
+
+  stopAllAudio = () => {
+    const sounds = document.querySelectorAll('audio');
+    sounds.forEach((audio) => audio.pause());
   };
 
   onClickAudioPlay = (mode) => {
@@ -120,7 +125,7 @@ export default class App extends PureComponent {
               isBtnNextLevelDisabled,
               currentRoundData,
               selectedBirdIndex,
-              onAnswerClick: this.onAnswerClick,
+              handleClick: this.onAnswerClick,
               currentItem,
             }}
           />
@@ -134,6 +139,12 @@ export default class App extends PureComponent {
       );
     }
 
-    return <Modal {...{ currentScore, handleClick: this.onGameRestart }} />;
+    return (
+      <>
+        <Header {...{ roundsList, currentScore }} />
+        <Main {...{ showModal: true, currentScore, handleClick: this.onGameRestart }} />
+        <Footer />
+      </>
+    );
   }
 }

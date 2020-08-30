@@ -6,7 +6,7 @@ const QuestionList = ({ listItems }) => {
   const questionsList = listItems.map((item) => {
     const { id, active, text } = item;
 
-    const classNames = `questions-list__text${active ? ' questions-list__text_active' : null}`;
+    const classNames = `questions-list__text${active ? ' questions-list__text_active' : ''}`;
     return (
       <li key={id} className="questions-list__item">
         <span className={classNames}>{text}</span>

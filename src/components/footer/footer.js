@@ -4,7 +4,7 @@ import { INITIAL_VALUE } from '../../constants/constants';
 
 import './footer.scss';
 
-const Footer = ({ isBtnNextLevelDisabled, handleClick }) => {
+const Footer = ({ isBtnNextLevelDisabled = true, handleClick }) => {
   const { btnNextLevelText } = INITIAL_VALUE;
   let classNames = 'btn-next-level';
   if (!isBtnNextLevelDisabled) {
