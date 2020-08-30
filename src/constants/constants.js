@@ -36,6 +36,6 @@ const INITIAL_STATE = {
 };
 
 const MODAL_CONGRATULATION = (point) =>
-  `Вы набрали ${point} из ${INITIAL_VALUE.maxGamePoints} возможных баллов`;
+  `Вы набрали <span class="modal__text">${point}</span> из <span class="modal__text">${INITIAL_VALUE.maxGamePoints}</span> возможных баллов`;
 
 export { INITIAL_VALUE, MODAL_CONGRATULATION, INITIAL_STATE };

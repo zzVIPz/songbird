@@ -1,14 +1,15 @@
 import React from 'react';
-import ListItem from '../list-item/list-item';
 
 import './questions-list.scss';
 
 const QuestionList = ({ listItems }) => {
   const questionsList = listItems.map((item) => {
-    const { id, ...props } = item;
+    const { id, active, text } = item;
+
+    const classNames = `questions-list__text${active ? ' questions-list__text_active' : null}`;
     return (
       <li key={id} className="questions-list__item">
-        <ListItem {...props} />
+        <span className={classNames}>{text}</span>
       </li>
     );
   });

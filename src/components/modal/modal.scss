@@ -1,0 +1,52 @@
+@import "../../sass/abstract/constants";
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px;
+
+  border-radius: 10px;
+  box-shadow: 0 0 15px 10px $color-shadow;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    color: $color-header-active-text;
+  }
+
+  &__subtitle {
+    text-align: center;
+  }
+
+  &__image {
+    width: 200px;
+    margin-bottom: 40px;
+  }
+
+  &__button {
+    width: 200px;
+    height: 30px;
+
+    font-size: large;
+    color: $color-body;
+
+    background-color: $color-header-text;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &_disabled {
+      display: none;
+    }
+  }
+
+  &__text {
+    font-size: 2rem;
+    color: $color-header-active-text;
+  }
+}

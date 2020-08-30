@@ -4,10 +4,9 @@ import getRandomInteger from '../../utils/getRandomInteger';
 import BIRDS_DATA from '../../data/birds-data';
 
 import HeaderContainer from '../header/header';
-import ButtonNextLevel from '../btn-next-level/btn-next-level';
-import CurrentQuestionSection from '../current-question-section/current-question-section';
-import AnswerSection from '../answer-section/answer-section';
-import DescribeSection from '../describe-section/describe-section';
+import Footer from '../footer/footer';
+import Main from '../main/main';
+
 import Modal from '../modal/modal';
 import correctAudioSound from '../../assets/audio/correct.mp3';
 import incorrectAudioSound from '../../assets/audio/error.mp3';
@@ -110,27 +109,24 @@ export default class App extends PureComponent {
     if (!showModal) {
       return (
         <>
-          <header className="header">
-            <HeaderContainer {...{ titleText, scoreText, roundsList, currentScore }} />
-          </header>
-          <main className="main">
-            <CurrentQuestionSection
-              {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }}
-            />
-            <div className="container">
-              <AnswerSection
-                {...{ currentRoundData, selectedBirdIndex }}
-                handleClick={this.onAnswerClick}
-              />
-              <DescribeSection {...{ currentRoundData, describeSectionText, currentItem }} />
-            </div>
-          </main>
-          <footer className="footer">
-            <ButtonNextLevel
-              {...{ btnNextLevelText, isBtnNextLevelDisabled }}
-              handleClick={this.onButtonNextLevelClick}
-            />
-          </footer>
+          <HeaderContainer {...{ titleText, scoreText, roundsList, currentScore }} />
+          <Main
+            {...{
+              SelectedBirdInfo,
+              isCorrectAnswerGet,
+              heroTitleText,
+              currentRoundData,
+              selectedBirdIndex,
+              onAnswerClick: this.onAnswerClick,
+              describeSectionText,
+              currentItem,
+            }}
+          />
+
+          <Footer
+            {...{ btnNextLevelText, isBtnNextLevelDisabled }}
+            handleClick={this.onButtonNextLevelClick}
+          />
         </>
       );
     }

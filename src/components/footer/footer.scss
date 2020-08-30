@@ -1,5 +1,20 @@
 @import "../../sass/abstract/constants";
 
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  padding-top: 16px;
+
+  color: $color-header-text;
+
+  background-image: $color-footer;
+}
+
 .btn-next-level {
   width: 200px;
   height: 35px;
@@ -7,10 +22,12 @@
   opacity: .5;
 
   &_active {
+    font-size: large;
     color: $color-button-next;
 
     background-color: $color-header-text;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     opacity: .9;
   }
