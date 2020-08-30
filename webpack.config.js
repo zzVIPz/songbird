@@ -20,6 +20,7 @@ module.exports = (env = {}) => {
       new HtmlWebpackPlugin({
         title: 'SONGBIRD',
         template: 'public/index.html',
+        favicon: 'public/favicon.ico',
       }),
     ];
 
