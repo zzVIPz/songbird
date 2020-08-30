@@ -18,23 +18,34 @@ export default class App extends PureComponent {
 
   incorrectAnswerAudio = new Audio(incorrectAudioSound);
 
-  onAnswerClick = (id) => {
+  onAnswerClick = (id, clicked) => {
     const { selectedBirdIndex, addPoints } = this.state;
-    this.changeAnswerItemClass(id);
+    this.changePropertyClicked(id);
+
     if (selectedBirdIndex === id - 1) {
-      this.correctAnswerAudio.play();
+      this.onClickAudioPlay(true);
       this.setState(({ currentScore }) => ({
         currentScore: currentScore + addPoints,
         isBtnNextLevelDisabled: false,
-        isCorrectAnswerGet: true,
-        currentItem: id,
       }));
-    } else if (addPoints) {
-      this.incorrectAnswerAudio.play();
-      this.setState(() => ({
-        addPoints: addPoints - 1,
-        currentItem: id,
-      }));
+    } else {
+      this.onClickAudioPlay();
+      if (addPoints && !clicked) {
+        this.setState(() => ({
+          addPoints: addPoints - 1,
+        }));
+      }
+    }
+  };
+
+  onClickAudioPlay = (mode) => {
+    const { isBtnNextLevelDisabled } = this.state;
+    if (isBtnNextLevelDisabled) {
+      if (mode) {
+        this.correctAnswerAudio.play();
+      } else {
+        this.incorrectAnswerAudio.play();
+      }
     }
   };
 
@@ -42,7 +53,7 @@ export default class App extends PureComponent {
     this.setState(() => INITIAL_STATE);
   };
 
-  changeAnswerItemClass = (id) => {
+  changePropertyClicked = (id) => {
     this.setState(({ currentRoundData }) => {
       const idx = currentRoundData.findIndex((el) => el.id === id);
       const item = currentRoundData[idx];
@@ -54,6 +65,7 @@ export default class App extends PureComponent {
       ];
       return {
         currentRoundData: updatedRoundData,
+        currentItem: id,
       };
     });
   };
@@ -75,7 +87,6 @@ export default class App extends PureComponent {
           isBtnNextLevelDisabled: true,
           currentRoundData: BIRDS_DATA[roundsList[currentRound + 1].id],
           selectedBirdIndex: getRandomInteger(),
-          isCorrectAnswerGet: false,
           currentItem: null,
         };
       }
@@ -91,7 +102,6 @@ export default class App extends PureComponent {
       currentRound,
       currentRoundData,
       isBtnNextLevelDisabled,
-      isCorrectAnswerGet,
       currentItem,
       showModal,
     } = this.state;
@@ -107,7 +117,6 @@ export default class App extends PureComponent {
           <Main
             {...{
               SelectedBirdInfo,
-              isCorrectAnswerGet,
               isBtnNextLevelDisabled,
               currentRoundData,
               selectedBirdIndex,

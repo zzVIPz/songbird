@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { INITIAL_VALUE } from '../../constants/constants';
 import AnswerItem from '../answer-item/answer-item';
 import './answer-section.scss';
 
@@ -6,8 +7,24 @@ const AnswerSection = ({
   currentRoundData,
   selectedBirdIndex,
   handleClick,
-  isCorrectAnswerGet,
+  isBtnNextLevelDisabled,
 }) => {
+  const { defaultState, correctState, incorrectState } = INITIAL_VALUE.state;
+  const [itemsState, setItemsState] = useState(currentRoundData.map(() => defaultState));
+
+  const changeItemDefaultState = (id) => {
+    if (isBtnNextLevelDisabled) {
+      const copy = [...itemsState];
+      if (id === selectedBirdIndex) {
+        copy[id] = correctState;
+        setItemsState(copy);
+      } else {
+        copy[id] = incorrectState;
+        setItemsState(copy);
+      }
+    }
+  };
+
   const answersList = currentRoundData.map((item) => {
     const { id, name, clicked } = item;
     return (
@@ -15,13 +32,18 @@ const AnswerSection = ({
         key={id}
         className="answer-section__item"
         onClick={() => {
-          if (!clicked) {
-            handleClick(id);
-          }
+          handleClick(id, clicked);
+          changeItemDefaultState(id - 1);
         }}
         aria-hidden="true"
       >
-        <AnswerItem {...{ name, id, clicked, selectedBirdIndex, isCorrectAnswerGet }} />
+        <AnswerItem
+          {...{
+            name,
+            clicked,
+            state: itemsState[id - 1],
+          }}
+        />
       </li>
     );
   });

@@ -17,6 +17,11 @@ const INITIAL_VALUE = {
     { id: 'predatorBirds', text: 'ХИЧНЫЕ ПТИЦЫ', active: false },
     { id: 'seaBirds', text: 'МОРСКИЕ ПТИЦЫ', active: false },
   ],
+  state: {
+    defaultState: 'default',
+    correctState: 'correct',
+    incorrectState: 'incorrect',
+  },
   pointsForAnswer: 5,
   initialScore: 0,
   maxGamePoints: 30,
@@ -32,7 +37,6 @@ const INITIAL_STATE = {
   roundsList: INITIAL_VALUE.roundsList,
   currentRoundData: BIRDS_DATA.warmUp,
   isBtnNextLevelDisabled: true,
-  isCorrectAnswerGet: false,
   showModal: false,
 };
 

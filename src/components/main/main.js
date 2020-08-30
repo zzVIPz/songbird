@@ -7,7 +7,7 @@ import DescribeSection from '../describe-section/describe-section';
 
 const Main = ({
   SelectedBirdInfo,
-  isCorrectAnswerGet,
+  isBtnNextLevelDisabled,
   currentRoundData,
   selectedBirdIndex,
   onAnswerClick,
@@ -17,14 +17,14 @@ const Main = ({
 
   return (
     <main className="main">
-      <CurrentQuestionSection {...{ ...SelectedBirdInfo, isCorrectAnswerGet, heroTitleText }} />
+      <CurrentQuestionSection {...{ ...SelectedBirdInfo, isBtnNextLevelDisabled, heroTitleText }} />
       <div className="container">
         <AnswerSection
           {...{
             currentRoundData,
             selectedBirdIndex,
             handleClick: onAnswerClick,
-            isCorrectAnswerGet,
+            isBtnNextLevelDisabled,
           }}
         />
         <DescribeSection {...{ currentRoundData, describeSectionText, currentItem }} />

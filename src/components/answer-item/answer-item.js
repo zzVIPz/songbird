@@ -2,13 +2,18 @@ import React from 'react';
 import { INITIAL_VALUE } from '../../constants/constants';
 import './answer-item.scss';
 
-const AnswerItem = ({ name, id, clicked, selectedBirdIndex, isCorrectAnswerGet }) => {
-  const { symbol } = INITIAL_VALUE;
+const AnswerItem = ({ name, clicked, state }) => {
+  const {
+    symbol,
+    state: { correctState, incorrectState },
+  } = INITIAL_VALUE;
+
   let classNames = 'answer-section__symbol';
-  if (clicked && !isCorrectAnswerGet) {
-    if (id - 1 === selectedBirdIndex) {
+  if (clicked) {
+    if (state === correctState) {
       classNames = `${classNames} answer-section__symbol_correct`;
-    } else {
+    }
+    if (state === incorrectState) {
       classNames = `${classNames} answer-section__symbol_incorrect`;
     }
   }
