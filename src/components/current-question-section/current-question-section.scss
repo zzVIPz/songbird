@@ -1,0 +1,47 @@
+@import "../../sass/abstract/constants";
+
+.current-question-section {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 40px;
+  padding: 15px;
+
+  border-radius: 10px;
+  box-shadow: 0 0 15px 10px $color-shadow;
+
+  &__image {
+    width: 200px;
+    height: 200px;
+
+    border-radius: 5px;
+
+    object-fit: cover;
+  }
+
+  &__info {
+    width: 75%;
+  }
+
+  &__hero-title {
+    text-align: center;
+    color: wheat;
+  }
+}
+
+@media (max-width: 600px) {
+  .current-question-section {
+    flex-direction: column;
+    align-items: center;
+
+    &__info {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .current-question-section {
+    width: 95%;
+  }
+}

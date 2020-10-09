@@ -1,0 +1,15 @@
+@import "../../sass/abstract/constants";
+
+.answer-section {
+  &__symbol {
+    margin-right: 5px;
+
+    vertical-align: text-top;
+    &_correct {
+      color: $color-correct-answer;
+    }
+    &_incorrect {
+      color: $color-incorrect-answer;
+    }
+  }
+}

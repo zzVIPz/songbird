@@ -1,0 +1,32 @@
+@import "../../sass/abstract/constants";
+
+.answer-section {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  padding: 1em;
+
+  border-radius: 10px;
+  box-shadow: 0 0 15px 10px $color-shadow;
+
+  &__list {
+    margin: auto;
+  }
+
+  &__item {
+    padding-bottom: 10px;
+
+    cursor: pointer;
+  }
+  &__item:hover {
+    color: $color-header-active-text;
+  }
+}
+
+@media (max-width: 800px) {
+  .answer-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+}
